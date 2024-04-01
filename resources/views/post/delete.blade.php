@@ -1,0 +1,38 @@
+<script>
+    // Button delete post event
+    $('body').on('click', '#btn-delete-post', function () {
+        let post_id = $(this).data('id');
+        Swal.fire({
+            title: 'Apakah Kamu Yakin?',
+            text: "Ingin menghapus data ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: 'TIDAK',
+            confirmButtonText: 'YA, HAPUS!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Fetch to delete data
+                $.ajax({
+                    url: '{{url('api/posts')}}/'+post_id,
+                    type: "DELETE",
+                    cache: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success:function(response){
+                        // Show success message
+                        Swal.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: `${response.message}`,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        // Remove post on table
+                        $(`#index_${post_id}`).remove();
+                    }
+                });
+            }
+        });
+    });
+</script>

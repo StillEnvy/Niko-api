@@ -64,7 +64,7 @@
                                     <th>Image</th>
                                     <th>Aksi</th>
                                 </tr>
-                            </thead>~
+                            </thead>
                             <tbody id="table-posts">
                                 @foreach($posts as $post)
                                 <tr id="index_{{ $post->id }}">

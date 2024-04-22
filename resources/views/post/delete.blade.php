@@ -15,7 +15,7 @@
                 $.ajax({
                     url: '{{url('api/posts')}}/'+post_id,
                     type: "DELETE",
-                    cache: false,
+                cache: false,
                     data: {
                         "_token": "{{ csrf_token() }}"
                     },

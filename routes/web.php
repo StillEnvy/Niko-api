@@ -17,3 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::apiResource('/posts',App\Http\Controllers\PostController::class);
+
+Route::get('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
